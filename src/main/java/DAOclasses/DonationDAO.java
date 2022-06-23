@@ -28,5 +28,8 @@ public class DonationDAO {
         List<Integer> sum=query.getResultList();
         return sum.get(0);
     }
+    public void saveDonation(Donation donation) {
+        entityManager.persist(donation);
+    }
 }
 

@@ -1,5 +1,7 @@
 package Classes;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
@@ -28,6 +30,7 @@ public class Donation {
     @Pattern(regexp = "(^\\d{5}$)|(^\\d{9}$)|(^\\d{5}-\\d{4}$)",message = "Zły zipcode")
     private String zipCode;
     @Column(name = "pickUpDate",nullable = false)
+    @DateTimeFormat(pattern = "(^\\d{4})-((0[1-9])|(1[0-2]))-((0[1-9])|(1[0-9])|(2[0-9])|(3[0-1]))")
     private LocalDate pickUpDate;
     @Column(name = "pickUpTime",nullable = false)
     private LocalTime pickUpTime;

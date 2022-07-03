@@ -1,4 +1,4 @@
-package Classes;
+package pl.coderslab.charity.Classes;
 
 
 import javax.persistence.*;
@@ -12,7 +12,7 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "name",nullable = false)
-    @Size(min=5,max = 20,message = "Za długa lub za krótka nazwa")
+    @Size(min=5,max = 100,message = "Za długa lub za krótka nazwa")
     private String name;
 
 

@@ -2,16 +2,17 @@ package pl.coderslab.charity;
 
 
 
-import Classes.Donation;
-import DAOclasses.CategoryDAO;
-import DAOclasses.DonationDAO;
-import DAOclasses.InstitutionDAO;
+import org.springframework.web.bind.annotation.*;
+import pl.coderslab.charity.Classes.Category;
+import pl.coderslab.charity.Classes.Donation;
+import pl.coderslab.charity.Classes.Institution;
+import pl.coderslab.charity.DAOclasses.CategoryDAO;
+import pl.coderslab.charity.DAOclasses.DonationDAO;
+import pl.coderslab.charity.DAOclasses.InstitutionDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -21,34 +22,39 @@ import java.util.List;
 public class DonationController {
     @Autowired
     public final DonationDAO donationDAO;
-    public InstitutionDAO institutionDAO;
+    public final InstitutionDAO institutionDAO;
 public final CategoryDAO categoryDAO;
 
-    public DonationController(DonationDAO donationDAO, CategoryDAO categoryDAO) {
+    public DonationController(DonationDAO donationDAO, InstitutionDAO institutionDAO, CategoryDAO categoryDAO) {
         this.donationDAO = donationDAO;
+        this.institutionDAO = institutionDAO;
         this.categoryDAO = categoryDAO;
     }
 
-    @RequestMapping(value = "/index", method = RequestMethod.GET)
-    public String sendlist(Model model) {
-        List<Donation> donations=donationDAO.findalldonation();
-        model.addAttribute("donations", donations);
-        return "index";
-    }
-    @RequestMapping(value = "/donationform", method = RequestMethod.GET)
+//    @RequestMapping(value = "/index", method = RequestMethod.GET)
+//    public String sendlist(Model model) {
+//        List<Donation> donations=donationDAO.findalldonation();
+//        model.addAttribute("donations", donations);
+//        return "index";
+//    }
+    @GetMapping(value = "/donationform")
     public String donationadd(Model model) {
-        model.addAttribute("donation", new Donation());
+        model.addAttribute("donation",new Donation());
         model.addAttribute("categories",categoryDAO.findallcategory());
+        model.addAttribute("donations",donationDAO.findalldonation());
         model.addAttribute("institutions",institutionDAO.findallinstitution());
         return "donationform";
     }
-    @RequestMapping(value = "/donationform", method = RequestMethod.POST)
-    public String donationaddpost(@Valid Donation donation, BindingResult result) {
+    @PostMapping(value = "/donationform")
+    public String donationaddpost(Model model,@Valid Donation donation, BindingResult result) {
 if (result.hasErrors())
 {
+    model.addAttribute("categories",categoryDAO.findallcategory());
+    model.addAttribute("donations",donationDAO.findalldonation());
+    model.addAttribute("institutions",institutionDAO.findallinstitution());
     return "donationform";
 }
 donationDAO.saveDonation(donation);
-        return "form-confirmation";
+        return "redirect:index";
     }
 }

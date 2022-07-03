@@ -1,7 +1,7 @@
-package DAOclasses;
+package pl.coderslab.charity.DAOclasses;
 
-import Classes.Category;
-import Classes.Donation;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import pl.coderslab.charity.Classes.Category;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -19,4 +19,9 @@ public class CategoryDAO {
         Query query = entityManager.createQuery("SELECT c FROM Category c");
         return query.getResultList();
     }
+//    @ModelAttribute("categories")
+//    public List<Category> findallcategory() {
+//        Query query = entityManager.createQuery("SELECT c FROM Category c");
+//        return query.getResultList();
+//    }
 }

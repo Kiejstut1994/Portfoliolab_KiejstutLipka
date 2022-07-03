@@ -1,6 +1,7 @@
-package Classes;
+package pl.coderslab.charity.Classes;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
@@ -21,43 +22,57 @@ public class Donation {
     @Positive
     private int quantity;
     @Column(name = "street",nullable = false)
-    @Size(min=2,max = 20,message = "Za długa lub za krótka nazwa")
+    @Size(min=2,max = 40,message = "Za długa lub za krótka nazwa")
     private String street;
     @Column(name = "city",nullable = false)
     @Size(min=2,max = 20,message = "Za długa lub za krótka nazwa")
     private String city;
+
+
+
+    @Column(name = "phone",nullable = false)
+    @NumberFormat
+    private int phone;
     @Column(name = "zipCode",nullable = false)
-    @Pattern(regexp = "(^\\d{5}$)|(^\\d{9}$)|(^\\d{5}-\\d{4}$)",message = "Zły zipcode")
+    @Pattern(regexp = "[0-9][0-9]-[0-9][0-9][0-9]",message = "Zły zipcode")
     private String zipCode;
     @Column(name = "pickUpDate",nullable = false)
-    @DateTimeFormat(pattern = "(^\\d{4})-((0[1-9])|(1[0-2]))-((0[1-9])|(1[0-9])|(2[0-9])|(3[0-1]))")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate pickUpDate;
     @Column(name = "pickUpTime",nullable = false)
+    @DateTimeFormat(pattern = "HH:mm")
     private LocalTime pickUpTime;
     @Column(name = "pickUpComment",nullable = false)
     @Size(min=2,max = 50,message = "Komentarz między 2 a 50 znaków")
     private String pickUpComment;
-    @OneToMany
-    @JoinColumn(name="Category_id")
-    private List<Category> categories=new ArrayList<>();
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<Category> categories;
     @OneToOne
-    @JoinColumn(name="Institution_id")
     private Institution institution;
 
 
     public Donation(){}
 
-    public Donation(int id, int quantity, String street, String city, String zipCode, LocalDate pickUpDate, LocalTime pickUpTime, String pickUpComment) {
+    public Donation(int id, int quantity, String street, String city,int phone, String zipCode, LocalDate pickUpDate, LocalTime pickUpTime, String pickUpComment,List<Category> categories,Institution institution) {
         this.id = id;
         this.quantity = quantity;
         this.street = street;
         this.city = city;
+        this.phone =phone;
         this.zipCode = zipCode;
         this.pickUpDate = pickUpDate;
         this.pickUpTime = pickUpTime;
         this.pickUpComment = pickUpComment;
+        this.categories = categories;
+        this.institution=institution;
+    }
+    public int getPhone() {
+        return phone;
     }
 
+    public void setPhone(int phone) {
+        this.phone = phone;
+    }
     public int getId() {
         return id;
     }

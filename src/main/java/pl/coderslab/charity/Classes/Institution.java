@@ -1,4 +1,4 @@
-package Classes;
+package pl.coderslab.charity.Classes;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -11,7 +11,7 @@ public class Institution {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "name",nullable = false)
-    @Size(min=5,max = 20,message = "Nazwa fundacji między 5 a 20 znaków")
+    @Size(min=5,max = 40,message = "Nazwa fundacji między 5 a 20 znaków")
     private String name;
     @Column(name = "description",nullable = false)
     @Size(min=5,max = 200,message = "Opis między 5 a 200 znaków")

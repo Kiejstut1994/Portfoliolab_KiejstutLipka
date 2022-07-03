@@ -1,7 +1,8 @@
-package DAOclasses;
+package pl.coderslab.charity.DAOclasses;
 
-import Classes.Donation;
-import Classes.Institution;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import pl.coderslab.charity.Classes.Category;
+import pl.coderslab.charity.Classes.Institution;
 import org.springframework.stereotype.Repository;
 
 
@@ -16,6 +17,8 @@ import java.util.List;
 public class InstitutionDAO {
     @PersistenceContext
     EntityManager entityManager;
+
+
     public List<Institution> findallinstitution(){
         Query query = entityManager.createQuery("SELECT i FROM Institution i");
         return query.getResultList();

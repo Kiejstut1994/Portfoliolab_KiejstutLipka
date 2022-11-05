@@ -3,12 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-
-
-
-
 <%@ include file="header.jsp" %>
-
 <section class="form--steps">
     <div class="form--steps-instructions">
         <div class="form--steps-container">
@@ -40,7 +35,7 @@
                 <div class="form-group form-group--checkbox">
                     <label>
                         <form:checkbox cssClass="category" title="${category.name}" path="categories"
-                                       value="${category}" />
+                                       value="${category.id}" />
                         <span class="checkbox"></span>
                         <span class="description"
                         >${category.name}</span
@@ -48,6 +43,7 @@
                     </label>
                 </div>
                 </c:forEach>
+                <form:errors path="categories" cssClass="errorclass"/>
 
 
                 <div class="form-group form-group--buttons">
@@ -62,8 +58,8 @@
                 <div class="form-group form-group--inline">
                     <label>
                         Liczba 60l worków:
-                        <form:input id="quantity"  type="number" name="quantity" placeholder="Liczba worków" step="1" min="1" path="quantity"/>
-                        <form:errors path="quantity"/>
+                        <form:input id="quantity"  type="number" name="quantity" placeholder="Liczba worków" step="1" path="quantity"/>
+                        <form:errors path="quantity" cssClass="errorclass"/>
                     </label>
                 </div>
 
@@ -82,7 +78,7 @@
                 <c:forEach items="${institutions}" var="institution">
                 <div class="form-group form-group--checkbox">
                     <label>
-                        <form:radiobutton cssClass="institution" title="${institution.name}" value="${institution}" path="institution"/>
+                        <form:radiobutton cssClass="institution" title="${institution.name}" value="${institution.id}" path="institution"/>
                         <span class="checkbox radio"></span>
                         <span class="description">
                   <div class="title">"${institution.name}"</div>
@@ -93,6 +89,8 @@
                     </label>
                 </div>
                 </c:forEach>
+                    <form:errors path="institution" cssClass="errorclass"/>
+
 
 
                 <div class="form-group form-group--buttons">
@@ -110,26 +108,26 @@
                         <h4>Adres odbioru</h4>
                         <div class="form-group form-group--inline">
                             <label> Ulica <form:input id="street" type="text" name="street" placeholder="Ulica"  path="street"/>
-                                <form:errors path="street"/> </label>
+                                <form:errors path="street" cssClass="errorclass"/> </label>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label> Miasto <form:input id="city" type="text" name="city" placeholder="Miasto"  path="city"/>
-                                <form:errors path="city"/> </label>
+                                <form:errors path="city" cssClass="errorclass"/> </label>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label>
                                 Kod pocztowy <form:input id="zipcod" type="text" name="zipCode" placeholder="Kod Pocztowy"  path="zipCode"/>
-                                <form:errors path="zipCode"/>
+                                <form:errors path="zipCode" cssClass="errorclass"/>
                             </label>
                             </label>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label>
-                                Numer telefonu <form:input id="phone" type="text" name="phone" placeholder="Telefon"  path="phone"/>
-                                <form:errors path="phone"/>
+                                Numer telefonu <form:input id="phone" type="number" step="1" name="phone" placeholder="Telefon"  path="phone"/>
+                                <form:errors path="phone" cssClass="errorclass"/>
                             </label>
                         </div>
                     </div>
@@ -138,19 +136,19 @@
                         <h4>Termin odbioru</h4>
                         <div class="form-group form-group--inline">
                             <label> Data <form:input id="date" type="date" name="pickUpDate" placeholder="Data wprowadzenia"  path="pickUpDate"/>
-                                <form:errors path="pickUpDate"/> </label>
+                                <form:errors path="pickUpDate" cssClass="errorclass"/> </label>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label> Godzina <form:input id="time" type="time" name="pickUpTime" placeholder="Czas wprowadzenia"  path="pickUpTime"/>
-                                <form:errors path="pickUpTime"/> </label>
+                                <form:errors path="pickUpTime" cssClass="errorclass"/> </label>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label>
                                 Uwagi dla kuriera
                                 <form:textarea id="pickUpComment"  name="pickUpComment" placeholder="Komentarz"  path="pickUpComment" rows="5"></form:textarea>
-                                <form:errors path="pickUpComment"/>
+                                <form:errors path="pickUpComment" cssClass="errorclass"/>
                             </label>
 
 
@@ -227,3 +225,4 @@
 </section>
 
 <%@ include file="footer.jsp" %>
+

@@ -10,17 +10,11 @@ public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    @Column(name = "name",nullable = false)
+    private Long id;
+    @Column(name = "name")
     @Size(min=5,max = 100,message = "Za długa lub za krótka nazwa")
     private String name;
-
-
-
-
-
-
-    public Category(int id, String name) {
+    public Category(Long id, String name) {
         this.id=id;
         this.name = name;
     }
@@ -28,9 +22,6 @@ public class Category {
     public Category() {
 
     }
-
-
-
     public String getName() {
         return name;
     }
@@ -39,14 +30,11 @@ public class Category {
         this.name =name;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
-
-
-
 }

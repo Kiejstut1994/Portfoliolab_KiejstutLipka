@@ -6,8 +6,8 @@
 <%@ include file="header.jsp" %>
 
 <section class="login-page">
-    <h2>Załóż konto</h2>
-    <form:form action="/register" method="post" modelAttribute="user">
+    <h2>Wprowadź nowe dane</h2>
+    <form:form action="/edituser" method="post" modelAttribute="user">
         <div class="form-group">
             <form:input type="text" name="name" placeholder="Imię" path="name"/>
             <form:errors path="name" cssClass="errorclass"/>

@@ -512,7 +512,14 @@ h2:after {
 .btn.active {
   border: 1px solid #3c3c3c;
 }
+.errorclass{
 
+  background-color: black;
+  text-decoration: none;
+  color: red;
+
+
+}
 /* line 1, scss/modules/_forms.scss */
 form {
   display: -webkit-box;

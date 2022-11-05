@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>" />
 </head>
 <body>
-<header class="header--main-page">
+<header class="header--form-page">
     <nav class="container container--70">
         <ul class="nav--actions">
             <li><a href="/login" class="btn btn--small btn--without-border">Zaloguj</a></li>
@@ -33,11 +33,11 @@
     </nav>
 
     <div class="slogan container container--90">
-        <div class="slogan--item">
-            <h1>
-                Zacznij pomagać!<br />
-                Oddaj niechciane rzeczy w zaufane ręce
-            </h1>
-        </div>
+        <h2>
+            Dziękujemy za przesłanie formularza Na maila prześlemy wszelkie
+            informacje o odbiorze.
+        </h2>
     </div>
 </header>
+
+<%@ include file="footer.jsp" %>

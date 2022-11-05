@@ -1,9 +1,11 @@
 package pl.coderslab.charity.Classes;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
@@ -17,43 +19,45 @@ import java.util.List;
 public class Donation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    @Column(name = "quantity",nullable = false)
-    @Positive
+    private Long id;
+    @Column(name = "quantity")
+    @Positive(message = "Liczba dodatnia")
     private int quantity;
-    @Column(name = "street",nullable = false)
+    @Column(name = "street")
     @Size(min=2,max = 40,message = "Za długa lub za krótka nazwa")
     private String street;
-    @Column(name = "city",nullable = false)
+    @Column(name = "city")
     @Size(min=2,max = 20,message = "Za długa lub za krótka nazwa")
     private String city;
-
-
-
-    @Column(name = "phone",nullable = false)
-    @NumberFormat
+    @Column(name = "phone")
+    @Positive(message = "Liczba dodatnia")
     private int phone;
-    @Column(name = "zipCode",nullable = false)
+    @Column(name = "zipCode")
     @Pattern(regexp = "[0-9][0-9]-[0-9][0-9][0-9]",message = "Zły zipcode")
     private String zipCode;
-    @Column(name = "pickUpDate",nullable = false)
+    @Column(name = "pickUpDate")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @NotNull(message = "Wybierz wartość")
     private LocalDate pickUpDate;
-    @Column(name = "pickUpTime",nullable = false)
+    @Column(name = "pickUpTime")
     @DateTimeFormat(pattern = "HH:mm")
+    @NotNull(message = "Wybierz wartość")
     private LocalTime pickUpTime;
-    @Column(name = "pickUpComment",nullable = false)
+    @Column(name = "pickUpComment")
     @Size(min=2,max = 50,message = "Komentarz między 2 a 50 znaków")
     private String pickUpComment;
     @ManyToMany(cascade = CascadeType.ALL)
+    @NotNull(message = "Wybierz conajmniej jedną z opcji")
     private List<Category> categories;
     @OneToOne
+    @NotNull(message = "Wybierz jedną z opcji")
     private Institution institution;
-
+    @OneToOne
+    private User user;
 
     public Donation(){}
 
-    public Donation(int id, int quantity, String street, String city,int phone, String zipCode, LocalDate pickUpDate, LocalTime pickUpTime, String pickUpComment,List<Category> categories,Institution institution) {
+    public Donation(Long id, int quantity, String street, String city,int phone, String zipCode, LocalDate pickUpDate, LocalTime pickUpTime, String pickUpComment,List<Category> categories,Institution institution,User user) {
         this.id = id;
         this.quantity = quantity;
         this.street = street;
@@ -65,6 +69,7 @@ public class Donation {
         this.pickUpComment = pickUpComment;
         this.categories = categories;
         this.institution=institution;
+        this.user=user;
     }
     public int getPhone() {
         return phone;
@@ -73,11 +78,12 @@ public class Donation {
     public void setPhone(int phone) {
         this.phone = phone;
     }
-    public int getId() {
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -151,6 +157,14 @@ public class Donation {
 
     public void setInstitution(Institution institution) {
         this.institution = institution;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
 

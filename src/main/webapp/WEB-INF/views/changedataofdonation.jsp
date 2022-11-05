@@ -5,19 +5,16 @@
 <%@ include file="header.jsp" %>
 
 <section class="login-page">
-    <h2>Zaloguj się</h2>
-    <form method="post" action="/login">
+    <h2>Zmień dane</h2>
+    <form method="post" action="/changedataofdonation">
         <div class="form-group">
-            <input type="email" name="email" placeholder="Email" />
+            Data odebrania <input  type="date" name="pickUpDate" pattern = "yyyy-MM-dd" placeholder="Data wprowadzenia" required>
         </div>
         <div class="form-group">
-            <input type="password" name="password" placeholder="Hasło" />
-            <a href="#" class="btn btn--small btn--without-border reset-password">Przypomnij hasło</a>
+            Godzina odebrania <input  type="time" pattern = "HH:mm" name="pickUpTime" placeholder="Czas wprowadzenia"  required>
         </div>
-
         <div class="form-group form-group--buttons">
-            <a href="#" class="btn btn--without-border">Załóż konto</a>
-            <button class="btn" type="submit">Zaloguj się</button>
+            <button class="btn" type="submit">Wprowadź dane</button>
         </div>
     </form>
 </section>

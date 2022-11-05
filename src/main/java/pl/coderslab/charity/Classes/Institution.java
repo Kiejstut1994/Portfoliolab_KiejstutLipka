@@ -9,11 +9,11 @@ public class Institution {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    @Column(name = "name",nullable = false)
+    private Long id;
+    @Column(name = "name")
     @Size(min=5,max = 40,message = "Nazwa fundacji między 5 a 20 znaków")
     private String name;
-    @Column(name = "description",nullable = false)
+    @Column(name = "description")
     @Size(min=5,max = 200,message = "Opis między 5 a 200 znaków")
     private String description;
 
@@ -21,7 +21,7 @@ public class Institution {
 
 
 
-    public Institution(int id, String name,String description) {
+    public Institution(Long id, String name,String description) {
         this.id=id;
         this.name = name;
         this.description = description;
@@ -41,11 +41,11 @@ public class Institution {
         this.name =name;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

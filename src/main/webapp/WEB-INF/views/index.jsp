@@ -4,6 +4,7 @@
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="header.jsp" %>
 
+
 <section id="stats" class="stats">
     <div class="container container--85">
         <div class="stats--item">
@@ -47,7 +48,7 @@
         </div>
     </div>
 
-    <a href="#" class="btn btn--large">Załóż konto</a>
+    <a href="/register" class="btn btn--large">Załóż konto</a>
 </section>
 
 <section id="about-us" class="about-us">

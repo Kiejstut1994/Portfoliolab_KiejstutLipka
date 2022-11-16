@@ -10,5 +10,6 @@ import javax.persistence.EntityManager;
 import javax.swing.text.html.parser.Entity;
 
 @Repository
-public interface RoleRepository extends JpaRepository<Role,Long> {
+public interface RoleRepository extends JpaRepository<Role, Integer> {
+    Role findByName(String name);
 }

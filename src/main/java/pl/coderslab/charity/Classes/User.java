@@ -1,6 +1,9 @@
 package pl.coderslab.charity.Classes;
 
+import lombok.Data;
+import lombok.ToString;
 import org.w3c.dom.stylesheets.LinkStyle;
+import pl.coderslab.charity.Classes.Role;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -9,7 +12,7 @@ import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-
+@Data
 @Entity
 @Table(name = "User")
 public class User {
@@ -25,27 +28,25 @@ public class User {
     @Column(name = "email")
     @Email(message = "Nieprawidłowy email")
     @NotEmpty(message = "To pole nie może być puste")
-    private String email;
-    @Column(name = "active")
-    private boolean active;
+    private String username;
+    //zamienić email na username
     @Column(name = "password")
     @Size(min = 5,max = 100,message = "Hasło między 5 a 100 znaków")
     private String password;
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles;
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    @ToString.Exclude
+    private Role role;
     public User() {
     }
 
-    public User(Long id, String name, String surname, String email, boolean active,String password, Set<Role> roles) {
+    public User(Long id, String name, String surname, String username, String password, Role role) {
         this.id = id;
         this.name = name;
         this.surname = surname;
-        this.email = email;
+        this.username = username;
         this.password = password;
-        this.roles = roles;
-        this.active=active;
+        this.role = role;
     }
 
     public Long getId() {
@@ -72,12 +73,12 @@ public class User {
         this.surname = surname;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return username;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -88,19 +89,12 @@ public class User {
         this.password = password;
     }
 
-    public Set<Role> getRoles() {
-        return roles;
+    public Role getRole() {
+        return role;
     }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
 }

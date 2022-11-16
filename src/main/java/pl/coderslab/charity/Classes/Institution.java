@@ -1,9 +1,12 @@
 package pl.coderslab.charity.Classes;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 
 @Entity
+@Data
 @Table(name = "Institution")
 public class Institution {
 
@@ -16,23 +19,13 @@ public class Institution {
     @Column(name = "description")
     @Size(min=5,max = 200,message = "Opis między 5 a 200 znaków")
     private String description;
-
-
-
-
-
     public Institution(Long id, String name,String description) {
         this.id=id;
         this.name = name;
         this.description = description;
     }
-
     public Institution() {
-
     }
-
-
-
     public String getName() {
         return name;
     }

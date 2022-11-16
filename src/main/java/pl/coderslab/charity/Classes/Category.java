@@ -1,9 +1,13 @@
 package pl.coderslab.charity.Classes;
 
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 import javax.persistence.*;
 import javax.validation.constraints.Size;
-
+@Data
+@EqualsAndHashCode
 @Entity
 @Table(name = "Category")
 public class Category {
@@ -12,7 +16,7 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "name")
-    @Size(min=5,max = 100,message = "Za długa lub za krótka nazwa")
+    @Size(min=3,max = 100,message = "Za długa lub za krótka nazwa")
     private String name;
     public Category(Long id, String name) {
         this.id=id;
@@ -37,4 +41,5 @@ public class Category {
     public void setId(Long id) {
         this.id = id;
     }
+
 }

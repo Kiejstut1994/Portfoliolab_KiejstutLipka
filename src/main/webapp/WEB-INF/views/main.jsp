@@ -9,12 +9,16 @@
   <sec:authorize access="isAuthenticated()">
     <ul class="nav--actions">
       <li class="logged-user">
-        Witaj <sec:authentication property="name"/></a>
+        Witaj <sec:authentication property="name"/>
         <ul class="dropdown">
           <li><a href="/profile">Profil</a></li>
           <li><a href="/adminpanel">Admin Panel</a></li>
-          <li><a href="/institution">Instytucje</a></li>
+          <li><a href="/institutions">Instytucje</a></li>
           <li><a href="/mydonations">Moje zbiórki</a></li>
+          <sec:authorize access="hasAnyRole('ADMIN')">
+          <li><a href="/institutionform" class="btn btn--without-border">Dodaj fundacje i organizacje</a></li>
+          </sec:authorize>
+          <li><a href="/users" class="btn btn--without-border">Użytkownicy</a></li>
           <li><a href="/logout">Wyloguj</a></li>
         </ul>
       </li>

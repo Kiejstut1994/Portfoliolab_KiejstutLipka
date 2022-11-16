@@ -11,11 +11,11 @@ import java.util.Set;
 
 @Repository
 public interface UserRepository extends JpaRepository<User,Long> {
-    @Query("SELECT u.email from User u")
+    @Query("SELECT u.username from User u")
     List<String> emails();
-    @Query("SELECT u from User u where u.email=:email ")
-    User userveryf(String email);
-    @Query("SELECT u from User u where u.roles.size=1")
-    List<User> justusers();
+    @Query("SELECT u from User u where u.username=:username ")
+    User userveryf(String username);
+    @Query("SELECT u from User u where u.role.id=1")
+    List<User> usersnotadmin();
 
 }

@@ -1,19 +1,19 @@
 package pl.coderslab.charity.Classes;
 
-import org.hibernate.validator.constraints.NotEmpty;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Positive;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
-
+@Data
+@EqualsAndHashCode
 @Entity
 @Table(name = "Donation")
 public class Donation {
@@ -46,13 +46,15 @@ public class Donation {
     @Column(name = "pickUpComment")
     @Size(min=2,max = 50,message = "Komentarz między 2 a 50 znaków")
     private String pickUpComment;
-    @ManyToMany(cascade = CascadeType.ALL)
-    @NotNull(message = "Wybierz conajmniej jedną z opcji")
+    @ManyToMany
+    @NotEmpty(message = "Wybierz conajmniej jedną z opcji")
     private List<Category> categories;
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "institution_id")
     @NotNull(message = "Wybierz jedną z opcji")
     private Institution institution;
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
 
     public Donation(){}

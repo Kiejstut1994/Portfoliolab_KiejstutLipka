@@ -24,7 +24,6 @@ public class UserService {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
-        user.setRole(roleRepository.findByName("USER"));
         userRepository.save(user);
     }
 
@@ -38,9 +37,8 @@ public class UserService {
     public User findbyId(Long id){
         return userRepository.getById(id);
     }
-//    public List<User> usersnotadmin(){
-//        return userRepository.justusers();
-//    }
+
+
     public User findByUsername(String usernamename){
         return userRepository.userveryf(usernamename);
     }
@@ -48,4 +46,7 @@ public class UserService {
         return userRepository.usersnotadmin();
     }
 
+    public List<User> usersadmin(){
+        return userRepository.usersadmin();
+    }
 }

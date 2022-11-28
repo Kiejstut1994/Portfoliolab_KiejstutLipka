@@ -23,8 +23,10 @@
             <div class="col">
                 <div class="title">${institution.name}</div>
                 <div class="subtitle">Cel i misja: ${institution.description}</div>
+                <sec:authorize access="hasAuthority('ADMIN')">
                 <div class="subtitle"><a href="/deleteinstitutions/${institution.id}" class="btn btn--without-border active">Usuń</a></div>
                 <div class="subtitle"><a href="/editinstitutions/${institution.id}" class="btn btn--without-border active">Edytuj</a></div>
+                </sec:authorize>
             </div>
             <c:if test="${theCount.index%2==1}">
                 </li>

@@ -16,8 +16,8 @@
                 <div class="title">Imię: ${user.name}</div>
                 <div class="title">Nazwisko: ${user.surname}</div>
                 <div class="title">Email: ${user.username}</div>
-                <div class="subtitle"><a href="/deleteusers/${user.id}" class="btn btn--without-border active">Usuń</a></div>
                 <div class="subtitle"><a href="/edituser/${user.id}" class="btn btn--without-border active">Edytuj</a></div>
+                <div class="subtitle"><a href="/deleteusers/${user.id}" class="btn btn--without-border active">Usuń</a></div>
                 <div class="subtitle"><a href="/deactive/${user.id}" class="btn btn--without-border active">Dezaktywuj konto</a></div>
             </div>
             <c:if test="${theCount.index%2==1}">

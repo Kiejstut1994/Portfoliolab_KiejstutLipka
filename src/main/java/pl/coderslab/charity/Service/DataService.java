@@ -60,11 +60,11 @@ public class DataService {
             userRepository.saveAll(Arrays.asList(
                     //login: user@user.com / pass: 12345
                     new User(1L,"UserFirstName","UserLastName","user@user.com",
-                            "$2a$12$hlg1KLbR/C9jwpLFsZL.nOkpAk0FyAS08vDEluWF.j8tLBrORpk0e",
+                            "$2a$12$hlg1KLbR/C9jwpLFsZL.nOkpAk0FyAS08vDEluWF.j8tLBrORpk0e",true,
                             roleRepository.findByName("USER")),
                     //login: admin@admin.com / pass: 12345
                     new User(2L,"AdminFirstName","AdminLastName","admin@admin.com",
-                            "$2a$12$hlg1KLbR/C9jwpLFsZL.nOkpAk0FyAS08vDEluWF.j8tLBrORpk0e",
+                            "$2a$12$hlg1KLbR/C9jwpLFsZL.nOkpAk0FyAS08vDEluWF.j8tLBrORpk0e",true,
                             roleRepository.findByName("ADMIN"))
             ));
         }

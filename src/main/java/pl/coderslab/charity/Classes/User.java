@@ -33,21 +33,28 @@ public class User {
     @Column(name = "password")
     @Size(min = 5,max = 100,message = "Hasło między 5 a 100 znaków")
     private String password;
+    @Column(name = "active")
+    private boolean isactive;
     @ManyToOne
     @JoinColumn(name = "role_id")
     @ToString.Exclude
     private Role role;
+
     public User() {
     }
 
-    public User(Long id, String name, String surname, String username, String password, Role role) {
+    public User(Long id, String name, String surname, String username, String password,boolean isactive ,Role role) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.username = username;
         this.password = password;
+        this.isactive=isactive;
         this.role = role;
+
     }
+
+
 
     public Long getId() {
         return id;
@@ -89,6 +96,14 @@ public class User {
         this.password = password;
     }
 
+    public boolean isIsactive() {
+        return isactive;
+    }
+
+    public void setIsactive(boolean isactive) {
+        this.isactive = isactive;
+    }
+
     public Role getRole() {
         return role;
     }
@@ -96,5 +111,6 @@ public class User {
     public void setRole(Role role) {
         this.role = role;
     }
+
 
 }

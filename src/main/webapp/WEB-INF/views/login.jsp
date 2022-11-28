@@ -12,7 +12,7 @@
         </div>
         <div class="form-group">
             <input type="password" name="password" placeholder="Hasło" />
-            <a href="/resetpassword" class="btn btn--small btn--without-border reset-password">Przypomnij hasło</a>
+            <a href="/findbyemail" class="btn btn--small btn--without-border reset-password">Przypomnij hasło</a>
         </div>
 
         <div class="form-group form-group--buttons">

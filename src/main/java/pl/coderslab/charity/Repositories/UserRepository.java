@@ -17,5 +17,6 @@ public interface UserRepository extends JpaRepository<User,Long> {
     User userveryf(String username);
     @Query("SELECT u from User u where u.role.id=1")
     List<User> usersnotadmin();
-
+    @Query("SELECT u from User u where u.role.id=2")
+    List<User> usersadmin();
 }

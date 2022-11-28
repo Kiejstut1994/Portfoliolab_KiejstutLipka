@@ -18,9 +18,7 @@
         <div class="form-group">
             <form:input type="email" name="username" placeholder="Podaj email" path="username"/>
             <form:errors path="username" cssClass="errorclass"/>
-            <c:if test="${emailrepeat==1}">
-                <span cssClass="errorclass">Osoba o takim emailu już istnieje</span>
-            </c:if>
+
         </div>
         <div class="form-group">
             <form:input type="password" name="password" placeholder="Hasło" path="password"/>
@@ -34,8 +32,8 @@
         </c:if>
 
         <div class="form-group form-group--buttons">
-            <a href="login.html" class="btn btn--without-border">Zaloguj się</a>
-            <button class="btn" type="submit">Załóż konto</button>
+
+            <button class="btn" type="submit">Zmień dane</button>
         </div>
     </form:form>
 </section>

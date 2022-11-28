@@ -12,4 +12,6 @@ import javax.swing.text.html.parser.Entity;
 @Repository
 public interface RoleRepository extends JpaRepository<Role, Integer> {
     Role findByName(String name);
+
+ Role findById(Long id);
 }

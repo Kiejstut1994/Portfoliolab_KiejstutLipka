@@ -53,11 +53,20 @@ public class DonationController {
     }
 
     @PostMapping("/donationform")
-    public String donationformpost(@Valid Donation donation, BindingResult result, Principal principal) {
+    public String donationformpost(@Valid Donation donation, BindingResult result, Principal principal1) {
         if(result.hasErrors()){
             return "donationform";
         }
-        donationService.save(donation, principal);
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username  = ((UserDetails)principal).getUsername();
+        Long id=(userService.findByUsername(username)).getId();
+        User user=userService.findbyId(id);
+        donation.setUser(user);
+        donationService.save(donation, principal1);
+        return "redirect:/formconfirmation";
+    }
+    @GetMapping("/formconfirmation")
+    public String formconfirmation() {
         return "formconfirmation";
     }
     @GetMapping("/mydonations")

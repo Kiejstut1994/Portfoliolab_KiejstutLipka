@@ -5,7 +5,7 @@
     <div class="slogan container container--90">
         <div class="slogan--item">
             <h1>
-               Dziękujemy za przekazanie darów!<br />
+                Email zweryfikowany, konto aktywne<br />
             </h1>
         </div>
     </div>

@@ -5,12 +5,10 @@
     <div class="slogan container container--90">
         <div class="slogan--item">
             <h1>
-               Dziękujemy za przekazanie darów!<br />
+               Dane zmieniono
             </h1>
         </div>
     </div>
 </header>
-
-
 
 <%@ include file="footer.jsp" %>

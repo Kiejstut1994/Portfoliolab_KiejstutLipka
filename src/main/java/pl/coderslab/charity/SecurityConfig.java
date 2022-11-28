@@ -33,6 +33,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return  provider;
     }
 
+
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -41,17 +43,30 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/", "/#", "/register").permitAll()
                 .antMatchers("/donationform/**").hasRole("USER")
                 .antMatchers("/donationform/**").authenticated()
+                .antMatchers("/changedataofdonation/**").hasRole("USER")
+                .antMatchers("/changedataofdonation/**").authenticated()
+                .antMatchers("/mydonations/**").hasRole("USER")
+                .antMatchers("/mydonations/**").authenticated()
                 .antMatchers("/institutionform/**").hasRole("ADMIN")
                 .antMatchers("/institutionform/**").authenticated()
                 .antMatchers("/editinstitutions/**").hasRole("ADMIN")
                 .antMatchers("/editinstitutions/**").authenticated()
                 .antMatchers("/deleteinstitutions/**").hasRole("ADMIN")
                 .antMatchers("/deleteinstitutions/**").authenticated()
+                .antMatchers("/register/2").hasRole("ADMIN")
+                .antMatchers("/register/2").authenticated()
+                .antMatchers("/deleteusers/**").hasRole("ADMIN")
+                .antMatchers("/deleteusers/**").authenticated()
+                .antMatchers("/edituser/**").hasRole("ADMIN")
+                .antMatchers("/edituser/**").authenticated()
+                .antMatchers("/deleteinstitutions/**").hasRole("ADMIN")
+                .antMatchers("/deleteinstitutions/**").authenticated()
                 .and()
                 .formLogin()
                 .defaultSuccessUrl("/")
                 .loginPage("/login")
-                .permitAll()
+                .permitAll().and()
+                .exceptionHandling().accessDeniedPage("/403")
                 .and()
                 .logout().permitAll();
     }
